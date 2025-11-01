@@ -44,7 +44,12 @@
 
   onMount(async () => {
     user = await me();
-    entries = (await formsForMe()).reverse();
+    
+    try {
+      entries = (await formsForMe()).reverse();
+    } catch (err) {
+      entries = []
+    }
 
     filteredEntries = getPage(entries, 1);
     loading = false;
