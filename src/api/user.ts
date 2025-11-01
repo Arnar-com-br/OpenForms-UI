@@ -14,7 +14,10 @@ export function login(
     })
     .catch(error => {
       let message = "Aconteceu um erro inesperado!";
+
       if (error.status == 401) message = "Email ou senha incorretos!";
+      if (error.status == 502) message = "Parece que o servidor está fora do ar, tente novamente mais tarde";
+
       onError(message);
     });
 }
